@@ -1,5 +1,6 @@
 import { useDetect } from './hook/useDetect'
 import { useMemos } from './hook/useMemos'
+import css from './style.module.css'
 
 export const Container = () => {
   const { memos, createMemo } = useMemos()
@@ -8,5 +9,5 @@ export const Container = () => {
     then: () => createMemo(),
   })
 
-  return <>{memos}</>
+  return <div className={css.container}>{memos}</div>
 }
