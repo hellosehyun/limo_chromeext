@@ -1,23 +1,19 @@
 import { useEffect } from 'react'
 
 interface In {
-  key: string
   then: () => void
-  delay?: number
 }
 
-export const usePressDouble = ({ key, then, delay = 500 }: In) => {
+export const useDetect = ({ then }: In) => {
+  const key = 'n'
+  const delay = 500
+
   useEffect(() => {
     let cnt = 0
     let timer: NodeJS.Timeout | null = null
 
     const handleDoubleKeyPress = (e: KeyboardEvent) => {
-      if (
-        e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement ||
-        (e.target as HTMLElement).isContentEditable
-      )
-        return
+      if (isTyping(e)) return
 
       if (e.key.toLowerCase() === key.toLowerCase()) {
         cnt++
@@ -29,11 +25,10 @@ export const usePressDouble = ({ key, then, delay = 500 }: In) => {
         }
 
         if (cnt === 2) {
-          then()
-
           if (timer) clearTimeout(timer)
           cnt = 0
 
+          then()
           e.preventDefault()
         }
       }
@@ -44,5 +39,13 @@ export const usePressDouble = ({ key, then, delay = 500 }: In) => {
       document.removeEventListener('keydown', handleDoubleKeyPress)
       if (timer) clearTimeout(timer)
     }
-  }, [key, then, delay])
+  }, [then])
+}
+
+const isTyping = (e: KeyboardEvent) => {
+  return (
+    e.target instanceof HTMLInputElement ||
+    e.target instanceof HTMLTextAreaElement ||
+    (e.target as HTMLElement).isContentEditable
+  )
 }

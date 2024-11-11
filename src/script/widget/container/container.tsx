@@ -1,11 +1,10 @@
-import { usePressDouble } from './hook/usePressDouble'
+import { useDetect } from './hook/useDetect'
 import { useMemos } from './hook/useMemos'
 
 export const Container = () => {
   const { memos, createMemo } = useMemos()
 
-  usePressDouble({
-    key: 'n',
+  useDetect({
     then: () => createMemo(),
   })
 
