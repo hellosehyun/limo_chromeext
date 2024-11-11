@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
 
 export const Memo = () => {
-  const [position, setPosition] = useState({ x: 100, y: 100 })
+  const [pos, setPos] = useState({ x: 100, y: 100 })
   const [isDragging, setIsDragging] = useState(false)
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
 
   const handleMouseDown = (e: any) => {
     if (e.target.classList.contains('memo-content')) return
     setIsDragging(true)
-    setDragOffset({
-      x: e.clientX - position.x,
-      y: e.clientY - position.y,
+    setOffset({
+      x: e.clientX - pos.x,
+      y: e.clientY - pos.y,
     })
   }
 
   const handleMouseMove = (e: any) => {
     if (isDragging) {
-      setPosition({
-        x: e.clientX - dragOffset.x,
-        y: e.clientY - dragOffset.y,
+      setPos({
+        x: e.clientX - offset.x,
+        y: e.clientY - offset.y,
       })
     }
   }
@@ -47,8 +47,8 @@ export const Memo = () => {
     <div
       style={{
         position: 'fixed',
-        left: `${position.x}px`,
-        top: `${position.y}px`,
+        left: `${pos.x}px`,
+        top: `${pos.y}px`,
         zIndex: 10000,
         right: '50px',
         width: '200px',

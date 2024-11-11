@@ -5,7 +5,7 @@ interface In {
 }
 
 export const useDetect = ({ then }: In) => {
-  const key = 'n'
+  const keyCode = 'KeyN'
   const delay = 500
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const useDetect = ({ then }: In) => {
     const handleDoubleKeyPress = (e: KeyboardEvent) => {
       if (isTyping(e)) return
 
-      if (e.key.toLowerCase() === key.toLowerCase()) {
+      if (e.code === keyCode) {
         cnt++
 
         if (cnt === 1) {
