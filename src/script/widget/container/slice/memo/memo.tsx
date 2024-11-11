@@ -45,8 +45,21 @@ export const Memo = () => {
 
   return (
     <div
+      style={{
+        position: 'fixed',
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        zIndex: 10000,
+        right: '50px',
+        width: '200px',
+        height: '200px',
+        backgroundColor: 'white',
+        border: '1px solid #ccc',
+        borderRadius: '4px',
+        padding: '8px',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      }}
       id="memo-container"
-      style={{ left: `${position.x}px`, top: `${position.y}px`, zIndex: 10000 }}
       onMouseDown={handleMouseDown}
     >
       <button onClick={handleClose}>×</button>

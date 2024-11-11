@@ -5,7 +5,6 @@ const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: {
-    bg: './src/bg/index.tsx',
     popup: './src/popup/index.tsx',
     script: './src/script/index.tsx',
   },
